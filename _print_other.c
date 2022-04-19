@@ -4,7 +4,7 @@
  * _print_rev - function that prints string in reverse
  * @list: va_list list
  * Return: none
- */
+ **/
 int _print_rev(va_list list)
 {
 	char *str = va_arg(list, char *);
@@ -26,7 +26,7 @@ int _print_rev(va_list list)
  * _print_rot13 - function that encodes a string using rot13
  * @list: va_list list
  * Return: a
- */
+ **/
 int _print_rot13(va_list list)
 {
 	char *x = va_arg(list, char *);
