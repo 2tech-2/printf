@@ -1,47 +1,56 @@
 #include "main.h"
 
 /**
- * _printf - produces output according to a format
- * @format: format string containing the characters and the specifiers
- * Description: this function will call the get_print() function that will
- * determine which printing function to call depending on the conversion
- * specifiers contained into fmt
- * Return: length of the formatted output string
+ * _printf - prints all user inputs 
+ * @format: character string
+ * Return: 0 upon success
  */
 int _printf(const char *format, ...)
 {
-	int (*pfunc)(va_list, flags_t *);
-	const char *p;
-	va_list arguments;
-	flags_t flags = {0, 0, 0};
+	va_list list;
+	unsigned int x = 0, y = 0, counter = 0;
+	unsigned int flag;
+	match_t matches[] = {
+		{"%", _print_mod}, {"c", _print_char}, {"s", _print_string},
+		{"d", _print_d_i}, {"i", _print_d_i}, {"r", _print_rev}, 
+		{"R", _print_rot13}, {NULL, NULL}
+	};
 
-	register int count = 0;
-
-	va_start(arguments, format);
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for (p = format; *p; p++)
-	{
-		if (*p == '%')
+	va_start(list, format);
+	if (format == NULL || (format[y] == '%' && format[y] == '\0'))
+		return (0);
+	while (format[y] != '\0')
+	{ 
+		flag = 0;
+		if (format[y] == '%')
 		{
-			p++;
-			if (*p == '%')
+			x = 0;
+			while (matches[x].identifier != NULL && flag == 0)
 			{
-				count += _putchar('%');
-				continue;
+				if (*(matches[x].identifier) == format[y + 1])
+				{
+					counter += (matches[x].function(list));
+					flag = 1;
+				}
+				else
+					x++;
 			}
-			while (get_flag(*p, &flags))
-				p++;
-			pfunc = get_print(*p);
-			count += (pfunc)
-				? pfunc(arguments, &flags)
-				: _printf("%%%c", *p);
-		} else
-			count += _putchar(*p);
+			if (matches[x].identifier == NULL)
+			{
+				_putchar(format[y]);
+				counter += 1;
+				_putchar(format[y + 1]);
+				counter += 1;
+			}
+			y = y + 2;
+		}
+		else
+		{
+			_putchar(format[y]);
+			counter = counter + 1;
+			y++;
+		}
 	}
-	_putchar(-1);
-	va_end(arguments);
-	return (count);
+	va_end(list);
+	return (counter);
 }
