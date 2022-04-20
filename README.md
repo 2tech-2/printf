@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 _printf
 _printf is a custom implementation of the C programming function printf. This project is an application of the C programming knowledge that Holberton School cohort 3 students have learned since starting the program on May 1, 2017.
 
@@ -61,3 +62,15 @@ print_numbers.c: - contains the functions print_i and print_d, which handle the 
 print_hex.c: - contains the functions print_hex, which prints an unsigned int in hexidecimal form, print_x, print_X, and print_p, which handle the conversion specifiers x, X, and p, respectively
 print_unsigned_int.c: - contains the functions print_u, print_o, and print_b, which handle the conversion specifiers u, o, and b, respectively
 print_rot13.c - contains the function print_R, which handles the conversion specifier R
+=======
+0x10. C - printf
+Description
+This team project is part of the first year curriculum of Holberton School. _printf replicates the C standard library printf() function.
+
+What you should learn from this project:
+
+How to use git in a team setting
+Applying variadic functions to a big project
+The complexities of printf
+Managing a lot of files and finding a good workflow
+>>>>>>> 035c7020f5ff19dadb0feab7fcd5dd90ae7f34de
