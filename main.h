@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
 
 #include <stdlib.h>
 #include <stdarg.h>
@@ -47,8 +47,6 @@ char *convert(unsigned long int num, int base, int lowercase);
 
 /* _printf */
 int _printf(const char *format, ...);
-<<<<<<< HEAD
-=======
 
 /* get_print */
 int (*get_print(char s))(va_list, flags_t *);
@@ -74,7 +72,6 @@ int print_address(va_list l, flags_t *f);
 
 /* print_percent */
 int print_percent(va_list l, flags_t *f);
->>>>>>> 035c7020f5ff19dadb0feab7fcd5dd90ae7f34de
 
 /* get_print */
 int (*get_print(char s))(va_list, flags_t *);
