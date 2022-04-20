@@ -10,7 +10,11 @@
  * printing function
  * Return: a pointer to the matching printing function
  */
+<<<<<<< HEAD
 int (*get_print(char s))(va_list, print_t *)
+=======
+int (*get_print(char s))(va_list, flags_t *)
+>>>>>>> main
 {
 	ph func_arr[] = {
 		{'i', print_int},
@@ -36,4 +40,8 @@ int (*get_print(char s))(va_list, print_t *)
 		if (func_arr[i].c == s)
 			return (func_arr[i].f);
 	return (NULL);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
