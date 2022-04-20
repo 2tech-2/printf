@@ -1,51 +1,56 @@
 #include "main.h"
 
 /**
- * _printf - formatted output conversion and print data.
- * @format: input string.
- *
- * Return: number of chars printed.
+ * _printf - prints all user inputs 
+ * @format: character string
+ * Return: 0 upon success
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, len = 0, ibuf = 0;
-	va_list arguments;
-	int (*function)(va_list, char *, unsigned int);
-	char *buffer;
+	va_list list;
+	unsigned int x = 0, y = 0, counter = 0;
+	unsigned int flag;
+	match_t matches[] = {
+		{"%", _print_mod}, {"c", _print_char}, {"s", _print_string},
+		{"d", _print_d_i}, {"i", _print_d_i}, {"r", _print_rev}, 
+		{"R", _print_rot13}, {NULL, NULL}
+	};
 
-	va_start(arguments, format), buffer = malloc(sizeof(char) * 1024);
-	if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
-		return (-1);
-	if (!format[i])
+	va_start(list, format);
+	if (format == NULL || (format[y] == '%' && format[y] == '\0'))
 		return (0);
-	for (i = 0; format && format[i]; i++)
-	{
-		if (format[i] == '%')
+	while (format[y] != '\0')
+	{ 
+		flag = 0;
+		if (format[y] == '%')
 		{
-			if (format[i + 1] == '\0')
-			{	print_buf(buffer, ibuf), free(buffer), va_end(arguments);
-				return (-1);
-			}
-			else
-			{	function = get_print_func(format, i + 1);
-				if (function == NULL)
+			x = 0;
+			while (matches[x].identifier != NULL && flag == 0)
+			{
+				if (*(matches[x].identifier) == format[y + 1])
 				{
-					if (format[i + 1] == ' ' && !format[i + 2])
-						return (-1);
-					handl_buf(buffer, format[i], ibuf), len++, i--;
+					counter += (matches[x].function(list));
+					flag = 1;
 				}
 				else
-				{
-					len += function(arguments, buffer, ibuf);
-					i += ev_print_func(format, i + 1);
-				}
-			} i++;
+					x++;
+			}
+			if (matches[x].identifier == NULL)
+			{
+				_putchar(format[y]);
+				counter += 1;
+				_putchar(format[y + 1]);
+				counter += 1;
+			}
+			y = y + 2;
 		}
 		else
-			handl_buf(buffer, format[i], ibuf), len++;
-		for (ibuf = len; ibuf > 1024; ibuf -= 1024)
-			;
+		{
+			_putchar(format[y]);
+			counter = counter + 1;
+			y++;
+		}
 	}
-	print_buf(buffer, ibuf), free(buffer), va_end(arguments);
-	return (len);
+	va_end(list);
+	return (counter);
 }
