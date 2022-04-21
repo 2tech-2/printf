@@ -3,6 +3,8 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
 
 /**
  * struct flags - struct containing flags to "turn on"
@@ -45,8 +47,29 @@ int print_octal(va_list l, flags_t *f);
 /* converter */
 char *convert(unsigned long int num, int base, int lowercase);
 
+/* STRUCT */
+/**
+ * struct match_s - struct
+ * @find: variable that finds a match
+ * @function: function that matching variables call
+ * Return: none
+ **/
+typedef struct match_s
+{
+	char *identifier;
+	int (*function)(va_list);
+} match_t;
+
 /* _printf */
+int _print_mod(va_list list);
+int _print_string(va_list list);
+int _print_char(va_list list);
+int _print_d_i(va_list list);
 int _printf(const char *format, ...);
+
+/* PRINT OTHER FUNCTIONS */
+int _print_rev(va_list list);
+int _print_rot13(va_list list);
 
 /* get_print */
 int (*get_print(char s))(va_list, flags_t *);
