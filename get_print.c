@@ -30,7 +30,7 @@ int (*get_print(char s))(va_list, flags_t *)
 		{'l', print_prg},
 		{'h', print_prg},
 		{'0', print_zero},
-		{'-', override}
+		{'-', print_blank}
 		};
 	int flags = 14;
 
