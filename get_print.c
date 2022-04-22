@@ -32,7 +32,7 @@ int (*get_print(char s))(va_list, flags_t *)
 		{'0', print_zero},
 		{'-', print_blank}
 		};
-	int flags = 14;
+	int flags = 18;
 
 	register int i;
 
