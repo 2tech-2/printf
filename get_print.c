@@ -26,7 +26,11 @@ int (*get_print(char s))(va_list, flags_t *)
 		{'r', print_rev},
 		{'S', print_bigS},
 		{'p', print_address},
-		{'%', print_percent}
+		{'%', print_percent},
+		{'l', print_prg},
+		{'h', print_prg},
+		{'0', print_zero},
+		{'-', override}
 		};
 	int flags = 14;
 
