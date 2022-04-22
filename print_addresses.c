@@ -7,11 +7,7 @@
  * if a flag is passed to _printf
  * Return: number of char printed
  */
-<<<<<<< HEAD
-int print_address(va_list l, print_t *f)
-=======
 int print_address(va_list l, flags_t *f)
->>>>>>> main
 {
 	char *str;
 	unsigned long int p = va_arg(l, unsigned long int);
